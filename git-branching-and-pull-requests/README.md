@@ -5,6 +5,6 @@ Code for the Git and GitHub Exercise
 
 - **Antoan Metodiev** – Editor
 
-- **Jenny Guteva** – Shuffler
+- **Jenny Guteva (Jen)** – Shuffler
 
 - **Nikolai Dimitrov** – Styler
