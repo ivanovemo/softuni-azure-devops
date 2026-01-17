@@ -3,6 +3,19 @@ $(document).ready(function() {
 	$('#btnShuffle').click(shuffleTowns);
 });
 
+$(document).ready(function () {
+    $('#btnAdd').click(addTown);
+});
+
+function addTown() {
+    let townName = $('#townNameForAdd').val();
+    $('#townNameForAdd').val('');
+    $('#towns').append(
+        $('<option>').text(townName)
+    );
+    $('#result').text(townName + ' added.');
+}
+
 function deleteTown() {
 	let townName = $('#townName').val();
 	$('#townName').val('');
