@@ -1,5 +1,5 @@
 document.querySelector('#new-reservation').addEventListener('click', (e) => cleanData(e));
-
+document.querySelector('#search-form-button').addEventListener('click', (e) => searchFormData(e));
 document.querySelector('#guest-details-back-btn').addEventListener('click', (e) => fillRoomForm(e));
 document.querySelector('#guest-details-next-btn').addEventListener('click', (e) => getPersonalData(e));
 
@@ -23,6 +23,24 @@ function changeContent(className) {
 
 function cleanData(e) {
     changeContent('search-form-content');
+};
+
+changeContent('search-form-content');
+
+function searchFormData(e) {
+    e.preventDefault();
+    const data = e.target.parentElement;
+    const checkIn = data.querySelector('#check-in').value;
+    const checkOut = data.querySelector('#check-out').value;
+    const people = data.querySelector('#people').value;
+    if (checkIn != '' && checkOut != '' && people != '' &&
+        new Date(checkIn) <= new Date(checkOut)) {
+        reservation.startDate = checkIn;
+        reservation.endDate = checkOut;
+        reservation.guestsCount = people;
+        console.log(reservation);
+        changeContent('search-result-form-content');
+    }
 };
 
 function fillRoomForm(e) {
