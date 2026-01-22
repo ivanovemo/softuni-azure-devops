@@ -2,6 +2,8 @@ document.querySelector('#new-reservation').addEventListener('click', (e) => clea
 document.querySelector('#search-form-button').addEventListener('click', (e) => searchFormData(e));
 document.querySelector('#guest-details-back-btn').addEventListener('click', (e) => fillRoomForm(e));
 document.querySelector('#guest-details-next-btn').addEventListener('click', (e) => getPersonalData(e));
+document.querySelector('#search-next-btn').addEventListener('click', (e) => findRoom(e));
+document.querySelector('#search-back-btn').addEventListener('click', (e) => fillSearchForm(e));
 
 let reservation =
 {
@@ -74,3 +76,38 @@ function fillConfirmReservationData(customReservation) {
     document.querySelector('.confirm-reservation #guest-data-in').textContent = `Date-in: ${customReservation.startDate}`;
     document.querySelector('.confirm-reservation #guest-data-out').textContent = `Date-out: ${customReservation.endDate}`;
 };
+
+function fillSearchForm(e) {
+    e.preventDefault();
+    changeContent('search-form-content');
+    document.querySelector('#check-in').value = reservation.startDate;
+    document.querySelector('#check-out').value = reservation.endDate;
+    document.querySelector('#people').value = reservation.guestsCount;
+}
+
+
+document.querySelectorAll('.room-type').forEach(room => {
+    room.addEventListener("click", (e) => selectRoomType(e))
+});
+
+function selectRoomType(e) {
+    let myTarget = undefined;
+    e.preventDefault;
+    if (e.target.querySelector('img') != null) {
+        myTarget = e.target;
+    } else {
+        myTarget = e.target.parentElement;
+    }
+    document.querySelectorAll('.room-type').forEach(room =>
+        room.classList.remove('selected-room'));
+    myTarget.classList.add('selected-room');
+}
+
+function findRoom(e) {
+    e.preventDefault();
+    const roomInfo = e.target.parentElement.parentElement.querySelector('.selected-room h4').textContent;
+    reservation.roomType = roomInfo;
+    console.log(reservation);
+    changeContent('guest-details-form-content');
+
+}
