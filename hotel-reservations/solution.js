@@ -4,6 +4,8 @@ document.querySelector('#guest-details-back-btn').addEventListener('click', (e) 
 document.querySelector('#guest-details-next-btn').addEventListener('click', (e) => getPersonalData(e));
 document.querySelector('#search-next-btn').addEventListener('click', (e) => findRoom(e));
 document.querySelector('#search-back-btn').addEventListener('click', (e) => fillSearchForm(e));
+document.querySelector('#confirm-back-btn').addEventListener('click', (e) => getBackToPersonalData(e));
+document.querySelector('#confirm-reservation').addEventListener('click', (e) => showThanksPage(e));
 
 let reservation =
 {
@@ -110,4 +112,14 @@ function findRoom(e) {
     console.log(reservation);
     changeContent('guest-details-form-content');
 
+}
+
+function getBackToPersonalData(e) {
+    e.preventDefault();
+    changeContent('guest-details-form-content');
+}
+
+function showThanksPage(e) {
+    e.preventDefault();
+    changeContent('thank-you-content');
 }
